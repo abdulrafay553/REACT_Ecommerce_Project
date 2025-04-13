@@ -6,8 +6,8 @@ import { MdOutlineLabelImportant } from "react-icons/md";
 import Image from "../../designLayouts/Image";
 import Badge from "./Badge";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { addToCart } from "../../../redux/orebiSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../../../redux/proSlice";
 
 const Product = (props) => {
   const dispatch = useDispatch();
@@ -26,6 +26,9 @@ const Product = (props) => {
       },
     });
   };
+
+  const products = useSelector((state) => state.proReducer.products);
+
   return (
     <div className="w-full relative group">
       <div className="max-w-80 max-h-80 relative overflow-y-hidden ">

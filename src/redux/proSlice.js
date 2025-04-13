@@ -5,8 +5,8 @@ const initialState = {
   products: [],
 };
 
-export const orebiSlice = createSlice({
-  name: "orebi",
+export const proSlice = createSlice({
+  name: "pro",
   initialState,
   reducers: {
     addToCart: (state, action) => {
@@ -19,6 +19,14 @@ export const orebiSlice = createSlice({
         state.products.push(action.payload);
       }
     },
+    deleteItem: (state, action) => {
+      state.products = state.products.filter(
+        (item) => item._id !== action.payload
+      );
+    },
+    resetCart: (state) => {
+      state.products = [];
+    },
     increaseQuantity: (state, action) => {
       const item = state.products.find(
         (item) => item._id === action.payload._id
@@ -27,7 +35,7 @@ export const orebiSlice = createSlice({
         item.quantity++;
       }
     },
-    drecreaseQuantity: (state, action) => {
+    decreaseQuantity: (state, action) => {
       const item = state.products.find(
         (item) => item._id === action.payload._id
       );
@@ -37,22 +45,14 @@ export const orebiSlice = createSlice({
         item.quantity--;
       }
     },
-    deleteItem: (state, action) => {
-      state.products = state.products.filter(
-        (item) => item._id !== action.payload
-      );
-    },
-    resetCart: (state) => {
-      state.products = [];
-    },
   },
 });
 
 export const {
   addToCart,
-  increaseQuantity,
-  drecreaseQuantity,
   deleteItem,
   resetCart,
-} = orebiSlice.actions;
-export default orebiSlice.reducer;
+  increaseQuantity,
+  decreaseQuantity,
+} = proSlice.actions;
+export default proSlice.reducer;
